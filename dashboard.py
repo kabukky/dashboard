@@ -7,7 +7,7 @@ inky_display = auto()
 
 while True:
     # Take website screenshot
-    os.system("chromium-browser --headless --screenshot=current.png --window-size=1600,1200 --disable-gpu --full-page --no-sandbox --timeout=3000 --hide-scrollbars http://nas:2356/dashboard/")
+    os.system("chromium --headless --screenshot=current.png --window-size=1600,1200 --disable-gpu --full-page --no-sandbox --timeout=3000 --hide-scrollbars http://nas:2356/dashboard/")
 
     # Display image on inky impression
     img = Image.open("current.png")
