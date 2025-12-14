@@ -30,6 +30,9 @@ while True:
         rotated_image = cropped_image.rotate(90, expand=True)
         inky.set_image(rotated_image, saturation=0.7)
         inky.show()
+        print("Updated inky image")
+    else:
+        print("No need to update inky image")
 
     # Keep last image
     last_image = image
