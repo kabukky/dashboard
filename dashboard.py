@@ -1,18 +1,38 @@
-import os
+import requests
 from time import sleep
+from io import BytesIO
 from inky.auto import auto
+from PIL import Image
+from PIL import ImageChops
 
 # Create inky impression display handle
-inky_display = auto()
+last_image = None
+inky = auto()
 
 while True:
-    # Take website screenshot
-    os.system("chromium --headless --screenshot=current.png --window-size=1600,1200 --disable-gpu --full-page --no-sandbox --timeout=3000 --hide-scrollbars http://nas:2356/dashboard/")
+    show_image = True
 
-    # Display image on inky impression
-    img = Image.open("current.png")
-    inky_display.set_image(img)
-    inky_display.show()
+    # Take website screenshot
+    response = requests.get("http://nas:5000/screenshot?width=1200&height=1687&url=http://nas:2356/dashboard/v2/")
+    image = Image.open(BytesIO(response.content))
+
+    if last_image is None:
+        # Compare images if update neccessary
+        diff = ImageChops.difference(last_image, image)
+        if diff.getbbox():
+            show_image = True
+        else:
+            show_image = False
+
+    if show_image:
+        # Display image on inky impression
+        cropped_image = image.crop((0,0,1200,1600))
+        rotated_image = cropped_image.rotate(90, expand=True)
+        inky.set_image(rotated_image, saturation=0.7)
+        inky.show()
+
+    # Keep last image
+    last_image = image
 
     # Wait until repeat
-    sleep(3*60) # 3 minutes
+    sleep(1*60) # 4 minutes
