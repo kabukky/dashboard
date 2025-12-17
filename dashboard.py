@@ -13,7 +13,7 @@ while True:
     show_image = True
 
     # Take website screenshot
-    response = requests.get("http://nas:5000/screenshot?width=1200&height=1687&url=http://nas:AP16722/dashboard/v2/calendar/")
+    response = requests.get("http://nas:5000/screenshot?width=1200&height=1687&url=http://AP16722:2356/dashboard/v2/")
     image = Image.open(BytesIO(response.content))
 
     if last_image is not None:
