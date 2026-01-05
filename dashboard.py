@@ -15,7 +15,7 @@ while True:
         response = requests.get("http://nas:5000/screenshot?width=1200&height=1687&url=http://nas:2356/dashboard/v2/calendar/")
         image = Image.open(BytesIO(response.content))
 
-        show_image = False
+        show_image = True
         
         if last_image is not None:
             # Compare images if update neccessary
