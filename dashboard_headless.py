@@ -37,7 +37,8 @@ try:
             screenshot = driver.get_screenshot_as_png()
             image = Image.open(BytesIO(screenshot))
             with BytesIO() as f:
-                image.save(f, format='JPEG')
+                rgb_image = image.convert('RGB')
+                rgb_image.save(f, format='JPEG')
                 f.seek(0)
                 ima_jpg = Image.open(f)
                 ima_jpg.save("screenshot.jpg")
