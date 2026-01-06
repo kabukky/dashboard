@@ -33,7 +33,6 @@ try:
             sleep(3)
             screenshot = driver.get_screenshot_as_png()
             image = Image.open(BytesIO(screenshot))
-            image.save("screenshot.png")
 
             show_image = True
             
