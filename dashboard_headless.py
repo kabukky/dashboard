@@ -28,7 +28,7 @@ try:
         try:
             # Weather
             print("Getting weather browser screenshot")
-            driver.set_window_size(1200, 825)
+            driver.set_window_size(1200, 911)
             driver.get("http://nas:2356/dashboard/v2/weather/")
             sleep(3)
             screenshot = driver.get_screenshot_as_png()
