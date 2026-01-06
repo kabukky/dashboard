@@ -33,12 +33,12 @@ try:
             sleep(3)
             screenshot = driver.get_screenshot_as_png()
             image = Image.open(BytesIO(screenshot))
+            image.save("screenshot.png")
 
             show_image = True
             
             if last_image is not None:
                 # Compare images if update neccessary
-                print("Comparing images")
                 diff = ImageChops.difference(last_image, image)
                 if diff.getbbox():
                     show_image = True
