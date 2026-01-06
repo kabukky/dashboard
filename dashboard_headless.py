@@ -10,6 +10,7 @@ from selenium.webdriver.firefox.options import Options as FirefoxOptions
 from selenium.webdriver.firefox.service import Service
 
 # Headless browser for image rendering
+print("Creating headless browser")
 service = Service(executable_path="/usr/bin/geckodriver")
 options = FirefoxOptions()
 options.add_argument("--headless")
@@ -18,6 +19,7 @@ options.add_argument("--headless")
 driver = webdriver.Firefox(service=service, options=options)
 
 # Create inky impression display handle
+print("Creating inky impression handle")
 last_image = None
 inky = auto()
 
@@ -25,6 +27,7 @@ try:
     while True:
         try:
             # Browser screenshot
+            print("Getting browser screenshot")
             driver.set_window_size(1200, 1686)
             driver.get("http://nas:2356/dashboard/v2/calendar/")
             sleep(3)
@@ -35,6 +38,7 @@ try:
             
             if last_image is not None:
                 # Compare images if update neccessary
+                print("Comparing images")
                 diff = ImageChops.difference(last_image, image)
                 if diff.getbbox():
                     show_image = True
@@ -43,8 +47,9 @@ try:
 
             if show_image:
                 # Display image on inky impression
-                cropped_image = image.crop((0,0,1200,1600))
-                rotated_image = cropped_image.rotate(90, expand=True)
+                print("Showing image on inky impression")
+                # cropped_image = image.crop((0,0,1200,1600))
+                rotated_image = image.rotate(90, expand=True)
                 inky.set_image(rotated_image, saturation=0.7)
                 inky.show()
                 print("Updated inky image")
@@ -57,6 +62,7 @@ try:
             print(e)
 
         # Wait until repeat
+        print("Waiting for next iteration")
         sleep(60) # 1 minute
 finally:
     print("Closing browser")
