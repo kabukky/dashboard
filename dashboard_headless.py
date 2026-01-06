@@ -1,8 +1,10 @@
 from selenium import webdriver
-from pyvirtualdisplay import Display
+from selenium.webdriver.firefox.options import Options as FirefoxOptions
+from selenium.webdriver.firefox.service import Service
 
-display = Display(visible=0, size=(1200, 1600))
-display.start()
+service = Service(executable_path='~/geckodriver-bin/geckodriver')
+options = FirefoxOptions()
+options.add_argument("--headless")
+driver = webdriver.Firefox(service=service, options=options)
 
-driver = webdriver.Firefox()
 driver.get("http://nas:2356/dashboard/v2/calendar/")
