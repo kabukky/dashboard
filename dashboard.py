@@ -34,10 +34,10 @@ try:
             driver.set_window_size(1200, 911)
             driver.get("http://nas:2356/dashboard/v2/weather/")
             sleep(5)
-            screenshot = driver.get_screenshot_as_png()
-            image = Image.open(BytesIO(screenshot))
+            screenshot_weather = driver.get_screenshot_as_png()
+            image_weather = Image.open(BytesIO(screenshot_weather))
             with BytesIO() as f:
-                rgb_image = image.convert('RGB')
+                rgb_image = image_weather.convert('RGB')
                 rgb_image.save(f, format='JPEG', quality=100)
                 f.seek(0)
                 # image_rgb = Image.open(f)
@@ -56,14 +56,16 @@ try:
             driver.set_window_size(1200, 1686)
             driver.get("http://nas:2356/dashboard/v2/calendar/")
             sleep(5)
-            screenshot = driver.get_screenshot_as_png()
-            image = Image.open(BytesIO(screenshot))
+            screenshot_calendar = driver.get_screenshot_as_png()
+            image_calendar = Image.open(BytesIO(screenshot_calendar))
 
             # Determine if new image should be shown
             show_image = True
             if last_image is not None:
                 # Compare images if update neccessary
-                diff = ImageChops.difference(last_image, image)
+                print("Comparing images")
+                diff = ImageChops.difference(last_image, image_calendar)
+                print(diff)
                 if diff.getbbox():
                     show_image = True
                 else:
@@ -73,11 +75,11 @@ try:
                 # Display image on inky impression
                 print("Showing image on inky impression")
                 # cropped_image = image.crop((0,0,1200,1600))
-                rotated_image = image.rotate(90, expand=True)
+                rotated_image = image_calendar.rotate(90, expand=True)
                 inky.set_image(rotated_image, saturation=0.7)
                 inky.show()
                 # Keep last image
-                last_image = image
+                last_image = image_calendar
                 print("Updated inky image")
             else:
                 print("No need to update inky image")
