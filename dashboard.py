@@ -64,8 +64,9 @@ try:
             if last_image is not None:
                 # Compare images if update neccessary
                 print("Comparing images")
+                print(last_image)
+                print(image_calendar)
                 diff = ImageChops.difference(last_image, image_calendar)
-                print(diff)
                 if diff.getbbox():
                     show_image = True
                 else:
