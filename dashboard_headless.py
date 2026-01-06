@@ -26,37 +26,47 @@ inky = auto()
 try:
     while True:
         try:
-            # Browser screenshot
-            print("Getting browser screenshot")
-            driver.set_window_size(1200, 1686)
-            driver.get("http://nas:2356/dashboard/v2/calendar/")
+            # Weather
+            print("Getting weather browser screenshot")
+            driver.set_window_size(1200, 825)
+            driver.get("http://nas:2356/dashboard/v2/weather/")
             sleep(3)
             screenshot = driver.get_screenshot_as_png()
             image = Image.open(BytesIO(screenshot))
+            image.save("screenshot.png")
 
-            show_image = True
+            # # Calendar
+            # # Browser screenshot
+            # print("Getting calendar browser screenshot")
+            # driver.set_window_size(1200, 1686)
+            # driver.get("http://nas:2356/dashboard/v2/calendar/")
+            # sleep(3)
+            # screenshot = driver.get_screenshot_as_png()
+            # image = Image.open(BytesIO(screenshot))
+
+            # show_image = True
             
-            if last_image is not None:
-                # Compare images if update neccessary
-                diff = ImageChops.difference(last_image, image)
-                if diff.getbbox():
-                    show_image = True
-                else:
-                    show_image = False
+            # if last_image is not None:
+            #     # Compare images if update neccessary
+            #     diff = ImageChops.difference(last_image, image)
+            #     if diff.getbbox():
+            #         show_image = True
+            #     else:
+            #         show_image = False
 
-            if show_image:
-                # Display image on inky impression
-                print("Showing image on inky impression")
-                # cropped_image = image.crop((0,0,1200,1600))
-                rotated_image = image.rotate(90, expand=True)
-                inky.set_image(rotated_image, saturation=0.7)
-                inky.show()
-                print("Updated inky image")
-            else:
-                print("No need to update inky image")
+            # if show_image:
+            #     # Display image on inky impression
+            #     print("Showing image on inky impression")
+            #     # cropped_image = image.crop((0,0,1200,1600))
+            #     rotated_image = image.rotate(90, expand=True)
+            #     inky.set_image(rotated_image, saturation=0.7)
+            #     inky.show()
+            #     print("Updated inky image")
+            # else:
+            #     print("No need to update inky image")
 
-            # Keep last image
-            last_image = image
+            # # Keep last image
+            # last_image = image
         except Exception as e:
             print(e)
 
