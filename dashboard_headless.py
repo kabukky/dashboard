@@ -23,6 +23,9 @@ print("Creating inky impression handle")
 last_image = None
 inky = auto()
 
+# Inkplate10 config
+inkplate_endpoint = "http://dashboard-inkplate:80/upload"
+
 try:
     while True:
         try:
@@ -33,7 +36,18 @@ try:
             sleep(3)
             screenshot = driver.get_screenshot_as_png()
             image = Image.open(BytesIO(screenshot))
-            image.save("screenshot.png")
+            with BytesIO() as f:
+                image.save(f, format='JPEG')
+                f.seek(0)
+                ima_jpg = Image.open(f)
+                ima_jpg.save("screenshot.jpg")
+                # Upload to inkplate to display image
+                # payload = {}
+                # files = [
+                #     ('',('screenshot.jpg',f,'image/jpeg'))
+                # ]
+                # headers = {}
+                # response = requests.request("POST", inkplate_endpoint, headers=headers, data=payload, files=files)
 
             # # Calendar
             # # Browser screenshot
