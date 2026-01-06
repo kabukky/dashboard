@@ -2,7 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 from selenium.webdriver.firefox.service import Service
 
-service = Service(executable_path='~/geckodriver-bin/geckodriver')
+service = Service(executable_path='/usr/bin/geckodriver')
 options = FirefoxOptions()
 options.add_argument("--headless")
 driver = webdriver.Firefox(service=service, options=options)
