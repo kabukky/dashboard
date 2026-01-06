@@ -58,16 +58,12 @@ try:
             sleep(5)
             screenshot_calendar = driver.get_screenshot_as_png()
             image_calendar = Image.open(BytesIO(screenshot_calendar))
-            image_calendar.save("/home/kabukky/dashboard/screenshot.png")
 
             # Determine if new image should be shown
             show_image = True
             if last_image is not None:
                 # Compare images if update neccessary
-                print("Comparing images")
-                print(last_image)
-                print(image_calendar)
-                diff = ImageChops.difference(last_image, image_calendar)
+                diff = ImageChops.difference(last_image.convert("RGB"), image_calendar.convert("RGB"))
                 if diff.getbbox():
                     show_image = True
                 else:
