@@ -58,7 +58,7 @@ try:
             sleep(5)
             screenshot_calendar = driver.get_screenshot_as_png()
             image_calendar = Image.open(BytesIO(screenshot_calendar))
-            image_calendar.save("screenshot.png")
+            image_calendar.save("/home/kabukky/dashboard/screenshot.png")
 
             # Determine if new image should be shown
             show_image = True
