@@ -1,3 +1,4 @@
+import time
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 from selenium.webdriver.firefox.service import Service
@@ -10,5 +11,6 @@ options.add_argument("-height=1600")
 driver = webdriver.Firefox(service=service, options=options)
 
 driver.get("http://nas:2356/dashboard/v2/calendar/")
+time.sleep(3)
 driver.save_screenshot("screenshot.png")
 driver.quit()
