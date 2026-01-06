@@ -59,8 +59,8 @@ try:
             screenshot = driver.get_screenshot_as_png()
             image = Image.open(BytesIO(screenshot))
 
+            # Determine if new image should be shown
             show_image = True
-            
             if last_image is not None:
                 # Compare images if update neccessary
                 diff = ImageChops.difference(last_image, image)
