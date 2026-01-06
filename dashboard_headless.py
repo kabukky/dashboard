@@ -5,7 +5,9 @@ from selenium.webdriver.firefox.service import Service
 service = Service(executable_path="/usr/bin/geckodriver")
 options = FirefoxOptions()
 options.add_argument("--headless")
+options.add_argument("--window-size=1200x1600")
 driver = webdriver.Firefox(service=service, options=options)
 
 driver.get("http://nas:2356/dashboard/v2/calendar/")
 driver.save_screenshot("screenshot.png")
+driver.quit()
