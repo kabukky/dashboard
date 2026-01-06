@@ -40,15 +40,16 @@ try:
                 rgb_image = image.convert('RGB')
                 rgb_image.save(f, format='JPEG', quality=100)
                 f.seek(0)
-                ima_jpg = Image.open(f)
-                ima_jpg.save("screenshot.jpg")
+                # image_rgb = Image.open(f)
                 # Upload to inkplate to display image
-                # payload = {}
-                # files = [
-                #     ('',('screenshot.jpg',f,'image/jpeg'))
-                # ]
-                # headers = {}
-                # response = requests.request("POST", inkplate_endpoint, headers=headers, data=payload, files=files)
+                payload = {}
+                files = [
+                    ('',('screenshot.jpg',f,'image/jpeg'))
+                ]
+                headers = {}
+                print("Updating inkplate image")
+                requests.request("POST", inkplate_endpoint, headers=headers, data=payload, files=files)
+                print("Updated inkplate image")
 
             # # Calendar
             # # Browser screenshot
