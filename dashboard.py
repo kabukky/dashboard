@@ -49,7 +49,6 @@ try:
                 headers = {}
                 print("Updating inkplate image")
                 requests.request("POST", inkplate_endpoint, headers=headers, data=payload, files=files)
-                print("Updated inkplate image")
 
             # Calendar
             # Browser screenshot
