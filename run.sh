@@ -1,3 +1,3 @@
 #!/bin/bash
 source /home/kabukky/.virtualenvs/pimoroni/bin/activate
-python /home/kabukky/dashboard/dashboard.py
+python -u /home/kabukky/dashboard/dashboard.py
