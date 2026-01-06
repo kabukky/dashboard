@@ -25,4 +25,4 @@ WantedBy=multi-user.target
 - sudo systemctl enable dashboard
 - sudo service dashboard start
 - Show logs using:
-    - journalctl -u dashboard
+    - journalctl -u dashboard -f --since "1 hour ago"
