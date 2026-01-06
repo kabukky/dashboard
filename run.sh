@@ -1,3 +1,3 @@
 #!/bin/bash
-source ~/.virtualenvs/pimoroni/bin/activate
-python dashboard_headless.py
+source /home/kabukky/.virtualenvs/pimoroni/bin/activate
+python /home/kabukky/dashboard/dashboard.py
