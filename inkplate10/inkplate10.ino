@@ -27,7 +27,7 @@ const char* password = "xxx";       // Password (min 8 chars)
 const char* hostname = "dashboard-inkplate";
 
 // Initialize Inkplate (3-bit grayscale mode by default)
-Inkplate display(INKPLATE_3BIT);
+Inkplate display(INKPLATE_1BIT);
 
 // Create a web server object on port 80
 WebServer server(80);
@@ -122,8 +122,8 @@ void showImageBuffer() {
   // display.clearDisplay();                     // clear existing content
   // display.setDisplayMode(INKPLATE_3BIT);      // ensure correct mode
   // Draw JPEG from RAM: full-screen, no dithering
-  display.drawJpegFromBuffer(imageBuf, imageLen, 0, 0, false, false);
-  display.display();                          // push to panel
+  display.drawJpegFromBuffer(imageBuf, imageLen, 0, 0, false, true);
+  display.partialUpdate(false, true);                        // push to panel
 }
 
 // Helper: calculate scaled dimensions by the larger original side
@@ -137,6 +137,7 @@ void setup() {
   Serial.begin(115200);             // initialize serial for debug
 
   display.begin();        // Init Inkplate library (you should call this function ONLY ONCE)
+  display.setFullUpdateThreshold(10);
   display.clearDisplay(); // Clear frame buffer of display
   display.display();      // Put clear image on display
 

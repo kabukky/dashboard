@@ -86,7 +86,7 @@ try:
 
         # Wait until repeat
         print("Waiting for next iteration")
-        sleep(100) # In seconds
+        sleep(50) # In seconds
 finally:
     print("Closing browser")
     driver.quit()
