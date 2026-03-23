@@ -33,7 +33,7 @@ try:
             print("Getting weather browser screenshot")
             driver.set_window_size(1200, 911)
             driver.get("http://nas:2356/dashboard/v2/weather/")
-            sleep(5)
+            sleep(8)
             screenshot_weather = driver.get_screenshot_as_png()
             image_weather = Image.open(BytesIO(screenshot_weather))
             with BytesIO() as f:
@@ -55,7 +55,7 @@ try:
             print("Getting calendar browser screenshot")
             driver.set_window_size(1200, 1686)
             driver.get("http://nas:2356/dashboard/v2/calendar/")
-            sleep(5)
+            sleep(7)
             screenshot_calendar = driver.get_screenshot_as_png()
             image_calendar = Image.open(BytesIO(screenshot_calendar))
 
